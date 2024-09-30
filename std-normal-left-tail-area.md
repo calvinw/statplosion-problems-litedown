@@ -1,7 +1,3 @@
----
-title: Hello
----
-
 We have $z = 1.25$. We want to find the chance of getting a z-value that is
 smaller than the given one.  
 
