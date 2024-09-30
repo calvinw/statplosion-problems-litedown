@@ -10,7 +10,7 @@ params:
 z1<-params$z1
 z2<-params$z2
 
-graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=",z2)
+graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdareabetween?z1=",z1, "&", "z2=", z2)
 
 area1 <- pnorm(z1)
 area2 <- pnorm(z2)

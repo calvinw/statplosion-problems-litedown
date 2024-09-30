@@ -12,7 +12,7 @@ getting a z-value that is between the two z-values.
 
 Here is the picture of the area we want. 
 
-![A area between z1=0.4 and z2=1.1](https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=1.1)
+![A area between z1=0.4 and z2=1.1](https://statplosion-api-x5isouofzq-uk.a.run.app/stdareabetween?z1=0.4&z2=1.1)
 
 We want the size of the shaded region between z1=0.4 and z2=1.1
 
