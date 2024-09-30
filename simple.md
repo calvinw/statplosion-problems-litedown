@@ -1,8 +1,3 @@
----
-title: "Simple"
-params:
-    x: 2.454
----
 
 # A sampler of things
 
