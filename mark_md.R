@@ -1,5 +1,4 @@
 args <- commandArgs(trailingOnly = TRUE)
-library(rmarkdown)
 library(litedown)
 
 input<-args[1]

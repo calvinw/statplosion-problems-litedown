@@ -1,5 +1,5 @@
 ---
-title: Normal Left Tail Area
+title: Normal Right Tail Area
 params:
     mu: 42
     sigma: 12
@@ -14,39 +14,36 @@ sigma<-params$sigma
 z<-(x-mu)/sigma
 
 rounded_z <- round(z, 2)
-area <- pnorm(z)
+area <- 1.0-pnorm(z)
 rounded_area <- round(area, 4)
 nearest_percent <- round(area*100)
 str_area <- sprintf("%.10f", area)
 str_rounded_area<-sprintf("%.4f", rounded_area)
 ```
 
-We have $x = `r x`$, $\mu = `r mu`$, and $\sigma = `r sigma`$ . We want to find
-the chance of $x$ being less than $`r x`$ in this situation.
+We have $x = `r x`$, $\mu = `r mu`$, and $\sigma = `r sigma`$ . We want to find the chance of $x$ being greater than $`r x`$ in this situation.
 
-Here is a rough picture of the area we want. Its the shaded area to the left of
-$x=`r x`$: 
+Here is a rough picture of the area we want. Its the shaded area to the right of $x=`r x`$: 
 
 ```{r}
 #| echo: false
-graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/lefttail")
+graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/righttail")
 params_str<-paste0("x=",x,"&","mu=",mu,"&","sigma=",sigma)
 graph_url<-paste0(graph_url,"?", params_str)
 ```
 
-![Left tail area for $x=`r x`$, $\mu=`r mu`$, and $\sigma=`r sigma`$](`r graph_url`)
+![Right tail area for $x=`r x`$, $\mu=`r mu`$, and $\sigma=`r sigma`$](`r graph_url`)
 
 Our approach will be to find the z-value from the given info, then use
-**NORMSDIST** to calculate the left tail area using a spreadsheet.
+**1.0-NORMSDIST** to calculate the right tail area using a spreadsheet.
 
-This works because the area above is the same as the left tail area using 
+This works because the area above is the same as the right tail area using 
 the $z$-value we get for $x=`r x`$:
-
 
 ```{r, child='calculate_z_value.Rmd'}
 ```
 
-- Now use the **NORMSDIST** function using the $z$ we just found
+- Now use the **1.0-NORMSDIST** function using the $z$ we just found
 
 |     |    column A    |    column B    |    column C    |    
 |-----|----------------|----------------|----------------|
@@ -55,7 +52,7 @@ the $z$-value we get for $x=`r x`$:
 |  3  |      mu        |   `r mu`       |                |
 |  4  |      sigma     |   `r sigma`    |                |
 |  5  |      z         |   `r z`        |                |
-|  6  |     left area  | =NORMSDIST(B5) |                |
+|  6  |    right area  | =1.0-NORMSDIST(B5) |            |
 |  7  |                |                |                |
 
 - The result is this 
@@ -67,7 +64,7 @@ the $z$-value we get for $x=`r x`$:
 |  3  |      mu        |   `r mu`       |                |
 |  4  |      sigma     |   `r sigma`    |                |
 |  5  |      z         |   `r z`        |                |
-|  6  |     left area  |   `r area`     |                |
+|  6  |   right area   |   `r area`     |                |
 |  7  |                |                |                |
 
 To four decimal places this is $`r str_rounded_area`$

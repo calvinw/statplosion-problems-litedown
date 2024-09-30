@@ -4,36 +4,27 @@ params:
     z: 1.25
 ---
 
-```{r}
-#| echo: false
-z<-params$z
-graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=",z)
-area <- pnorm(z)
-rounded_area <- round(area, 4)
-nearest_percent <- round(area*100)
-str_area <- sprintf("%.10f", area)
-str_rounded_area<-sprintf("%.4f", rounded_area)
-```
 
-We have $z = `r z`$. We want to find the chance of getting a z-value that is
+
+We have $z = 1.25$. We want to find the chance of getting a z-value that is
 smaller than the given one.  
 
 Here is the picture of the area we want. 
 
-![A left tail area for $z=`r z`$](`r graph_url`)
+![A left tail area for $z=1.25$](https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=1.25)
 
-We want the size of the shaded region to the left of $z=`r z`$.  
+We want the size of the shaded region to the left of $z=1.25$.  
 
 We will calculate this area using a spreadsheet and the **NORMSDIST** function
 which gives left tail areas for z-values. 
 
 - Type **z** in cell **A2** 
-- Then type $`r z`$ into **B2**
+- Then type $1.25$ into **B2**
 
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z         |   `r z`        |                |
+|  2  |      z         |   1.25        |                |
 |  3  |                |                |                |
 |  4  |                |                |                |
 
@@ -44,7 +35,7 @@ which gives left tail areas for z-values.
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z         |   `r z`        |                |
+|  2  |      z         |   1.25        |                |
 |  3  |     left area  | =NORMSDIST(B2) |                |
 |  4  |                |                |                |
 
@@ -54,12 +45,12 @@ Finally hit return and you should get this:
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z         |   `r z`        |                |
-|  3  |     left area  | `r str_area`   |                |
+|  2  |      z         |   1.25        |                |
+|  3  |     left area  | 0.8943502263   |                |
 |  4  |                |                |                |
 
 
-To four decimal places this is $`r str_rounded_area`$
+To four decimal places this is $0.8944$
 
 Sometimes we like to have it to the nearest percent and for that we have 
-$`r nearest_percent`\%$.
+$89\%$.

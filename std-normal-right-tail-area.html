@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="generator" content="litedown 0.2">
+<title>Standard Normal Right Tail Area</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<style type="text/css">
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+}
+body, .abstract, code, .footnotes, #refs { font-size: .9em; }
+li li { font-size: .95em; }
+ul:has(li > input[type="checkbox"]) { list-style: none; padding-left: 1em; }
+*, :before, :after { box-sizing: border-box; }
+a { color: steelblue; }
+pre, img { max-width: 100%; }
+pre, pre:hover { white-space: pre-wrap; word-break: break-all; }
+pre code { display: block; padding: 1em; overflow-x: auto; }
+code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
+:not(pre) > code, code[class], .box > div { background-color: #f8f8f8; }
+pre > code:not([class]), pre > .language-plain, .box { background-color: inherit; border: 1px solid #eee; }
+pre > .message { border-color: #9eeaf9; }
+pre > .warning { background: #fff3cd; border-color: #fff3cd; }
+pre > .error { background: #f8d7da; border-color: #f8d7da; }
+.fenced-chunk { border-left: 1px solid #666; }
+.code-fence {
+  opacity: .4;
+  border: 1px dashed #666;
+  border-left: 2px solid;
+  &:hover { opacity: inherit; }
+}
+.box { margin: 1em 0; }
+.box > :first-child > p:first-child, .box > :last-child > p:last-child { padding: 1em; }
+.box > :first-child, .box > :first-child > p:first-child { margin-top: 0; }
+.box > :last-child, .box > :last-child > p:last-child { margin-bottom: 0; }
+.figure > p:has(img) { text-align: center; }
+table {
+  margin: auto; border-top: 1px solid #666;
+  thead th { border-bottom: 1px solid #ddd; }
+  th, td { padding: 5px; }
+  thead, tfoot, tr:nth-child(even) { background: #eee; }
+}
+blockquote {
+  color: #666;
+  margin: 0;
+  padding: 1px 1em;
+  border-left: .5em solid #eee;
+}
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered {
+  padding-left: 0;
+  li { list-style: none; }
+  ul { padding-left: 1em; }
+}
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.main-number::after { content: "."; }
+.ref-number-fig::after, .ref-number-tab::after { content: ":"; }
+.cross-ref-chp::before { content: "Chapter "; }
+.cross-ref-sec::before { content: "Section "; }
+.cross-ref-fig::before, .ref-number-fig::before { content: "Figure "; }
+.cross-ref-tab::before, .ref-number-tab::before { content: "Table "; }
+.abstract, #refs {
+  &::before { display: block; margin: 1em auto; font-weight: bold; }
+}
+.abstract::before { content: "Abstract"; text-align: center; }
+#refs::before { content: "Bibliography"; font-size: 1.5em; }
+.ref-paren-open::before { content: "("; }
+.ref-paren-close::after { content: ")"; }
+.ref-semicolon::after { content: "; "; }
+.ref-and::after { content: " and "; }
+.ref-et-al::after { content: " et al."; font-style: italic; }
+.footnote-ref a {
+  &::before { content: "["; }
+  &::after { content: "]"; }
+}
+section.footnotes {
+  margin-top: 2em;
+  &::before { content: ""; display: block; max-width: 20em; }
+}
+
+@media print {
+  body { max-width: 100%; }
+  tr, img { page-break-inside: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
+}
+</style>
+</head>
+<body>
+<div class="frontmatter">
+<div class="title"><h1>Standard Normal Right Tail Area</h1></div>
+</div>
+<div class="body">
+<p>We have \(z = 1.25\). We want to find the chance of getting a z-value that is
+greater than the given one.</p>
+<p>Here is the picture of the area we want.</p>
+<p><img src="https://statplosion-api-x5isouofzq-uk.a.run.app/stdrighttail?z=1.25" alt="A right tail area for f:GZc\(z=1.25\)f:GZc" /></p>
+<p>We want the size of the shaded region to the right of \(z=1.25\).</p>
+<p>We will calculate this area using a spreadsheet and the <strong>NORMSDIST</strong> function.</p>
+<p>However since <strong>NORMSDIST</strong> calculates left tail areas, we need to use it
+together with a trick. The trick uses the fact that:</p>
+<p>$$ \text{Left Tail Area} + \text{Right Tail Area} = 100\% $$</p>
+<p>So if <strong>NORMSDIST</strong> gives the left tail area, <strong>1-NORMSDIST</strong> gives the right
+tail area.</p>
+<p>So lets put our work into a spreadsheet:</p>
+<ul>
+<li>Type <strong>z</strong> in cell <strong>A2</strong></li>
+<li>Then type \(1.25\) into <strong>B2</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>z</td>
+<td>1.25</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Type <strong>right area</strong> in cell <strong>A3</strong></li>
+<li>Then type <strong>=1.0-NORMSDIST(B2)</strong> into <strong>B3</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>z</td>
+<td>1.25</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>right area</td>
+<td>=1.0-NORMSDIST(B2)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Finally hit return and you should get this:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>z</td>
+<td>1.25</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>right area</td>
+<td>0.1056498</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To four decimal places this is \(0.1056\)</p>
+<p>Sometimes we like to have it to the nearest percent and for that we have
+\(11\%\).</p>
+</div>
+<script src="https://cdn.jsdelivr.net/combine/npm/katex@0.16.11/dist/katex.min.js,npm/katex@0.16.11/dist/contrib/auto-render.min.js,npm/@xiee/utils@1.13.33/js/render-katex.js" defer></script>
+</body>
+</html>

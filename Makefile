@@ -1,7 +1,7 @@
 # Makefile for compiling Quarto documents using litedown::fuse() or quarto render
 
 # Variable to control build method (litedown or quarto)
-BUILD_METHOD ?=quarto
+BUILD_METHOD ?=litedown
 
 # Find all .qmd files in the current directory
 QMD_FILES := $(wildcard *.qmd)

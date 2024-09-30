@@ -1,0 +1,51 @@
+
+We will use the $z$-value formula: 
+
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+
+But instead of doing this by hand we will use our spreadsheet to help us with this.
+
+We will put the numerical $x$, $\mu$ and $\sigma$ values that we have in column
+B and labels for these in column A.  
+
+- Type the label **x** in cell **A2** 
+- Type $`r x`$ in cell **B2** 
+- Type the label **mu** in cell **A3** 
+- Type $`r mu`$ in cell **B3** 
+- Type the label **sigma** in cell **A4** 
+- Type $`r sigma`$ in cell **B4** 
+
+|     |    column A    |    column B    |    column C    |
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |                |                |                |
+
+
+- Use the formula $z=\frac{x-\mu}{\sigma}$ in cell **B5** using the cell
+  references for $x$, $\mu$, and $\sigma$ 
+
+|     |    column A    |    column B    |    column C    | 
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         | =(B2-B3)/B4    |                |
+|  6  |                |                |                |
+
+- On pressing Enter, the result looks like this 
+
+|     |    column A    |    column B    |    column C    | 
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         |   `r z`        |                |
+|  6  |                |                |                | 
+

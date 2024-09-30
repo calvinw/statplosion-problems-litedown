@@ -1,5 +1,5 @@
 ---
-title: Standard Normal Left Tail Area
+title: Standard Normal Right Tail Area
 params:
     z: 1.25
 ---
@@ -7,25 +7,34 @@ params:
 ```{r}
 #| echo: false
 z<-params$z
-graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=",z)
-area <- pnorm(z)
-rounded_area <- round(area, 4)
-nearest_percent <- round(area*100)
-str_area <- sprintf("%.10f", area)
-str_rounded_area<-sprintf("%.4f", rounded_area)
+graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdrighttail?z=",z)
+right_area <- 1.0-pnorm(z)
+rounded_right_area <- round(right_area, 4)
+nearest_percent <- round(right_area*100)
+str_right_area <- sprintf("%.10f", right_area)
+str_rounded_area<-sprintf("%.4f", rounded_right_area)
 ```
 
 We have $z = `r z`$. We want to find the chance of getting a z-value that is
-smaller than the given one.  
+greater than the given one.  
 
 Here is the picture of the area we want. 
 
-![A left tail area for $z=`r z`$](`r graph_url`)
+![A right tail area for $z=`r z`$](`r graph_url`)
 
-We want the size of the shaded region to the left of $z=`r z`$.  
+We want the size of the shaded region to the right of $z=`r z`$.  
 
-We will calculate this area using a spreadsheet and the **NORMSDIST** function
-which gives left tail areas for z-values. 
+We will calculate this area using a spreadsheet and the **NORMSDIST** function.  
+
+However since **NORMSDIST** calculates left tail areas, we need to use it
+together with a trick. The trick uses the fact that: 
+
+$$ \text{Left Tail Area} + \text{Right Tail Area} = 100\\% $$
+
+So if **NORMSDIST** gives the left tail area, **1-NORMSDIST** gives the right
+tail area.
+
+So lets put our work into a spreadsheet:
 
 - Type **z** in cell **A2** 
 - Then type $`r z`$ into **B2**
@@ -38,14 +47,14 @@ which gives left tail areas for z-values.
 |  4  |                |                |                |
 
 
-- Type **left area** in cell **A3** 
-- Then type **=NORMSDIST(B2)** into **B3**
+- Type **right area** in cell **A3** 
+- Then type **=1.0-NORMSDIST(B2)** into **B3**
 
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
 |  2  |      z         |   `r z`        |                |
-|  3  |     left area  | =NORMSDIST(B2) |                |
+|  3  |  right area    | =1.0-NORMSDIST(B2) |            |
 |  4  |                |                |                |
 
 
@@ -55,7 +64,7 @@ Finally hit return and you should get this:
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
 |  2  |      z         |   `r z`        |                |
-|  3  |     left area  | `r str_area`   |                |
+|  3  |     right area | `r right_area` |             |
 |  4  |                |                |                |
 
 

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="generator" content="litedown 0.2">
+<title>Normal Right Tail Area</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<style type="text/css">
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+}
+body, .abstract, code, .footnotes, #refs { font-size: .9em; }
+li li { font-size: .95em; }
+ul:has(li > input[type="checkbox"]) { list-style: none; padding-left: 1em; }
+*, :before, :after { box-sizing: border-box; }
+a { color: steelblue; }
+pre, img { max-width: 100%; }
+pre, pre:hover { white-space: pre-wrap; word-break: break-all; }
+pre code { display: block; padding: 1em; overflow-x: auto; }
+code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
+:not(pre) > code, code[class], .box > div { background-color: #f8f8f8; }
+pre > code:not([class]), pre > .language-plain, .box { background-color: inherit; border: 1px solid #eee; }
+pre > .message { border-color: #9eeaf9; }
+pre > .warning { background: #fff3cd; border-color: #fff3cd; }
+pre > .error { background: #f8d7da; border-color: #f8d7da; }
+.fenced-chunk { border-left: 1px solid #666; }
+.code-fence {
+  opacity: .4;
+  border: 1px dashed #666;
+  border-left: 2px solid;
+  &:hover { opacity: inherit; }
+}
+.box { margin: 1em 0; }
+.box > :first-child > p:first-child, .box > :last-child > p:last-child { padding: 1em; }
+.box > :first-child, .box > :first-child > p:first-child { margin-top: 0; }
+.box > :last-child, .box > :last-child > p:last-child { margin-bottom: 0; }
+.figure > p:has(img) { text-align: center; }
+table {
+  margin: auto; border-top: 1px solid #666;
+  thead th { border-bottom: 1px solid #ddd; }
+  th, td { padding: 5px; }
+  thead, tfoot, tr:nth-child(even) { background: #eee; }
+}
+blockquote {
+  color: #666;
+  margin: 0;
+  padding: 1px 1em;
+  border-left: .5em solid #eee;
+}
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered {
+  padding-left: 0;
+  li { list-style: none; }
+  ul { padding-left: 1em; }
+}
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.main-number::after { content: "."; }
+.ref-number-fig::after, .ref-number-tab::after { content: ":"; }
+.cross-ref-chp::before { content: "Chapter "; }
+.cross-ref-sec::before { content: "Section "; }
+.cross-ref-fig::before, .ref-number-fig::before { content: "Figure "; }
+.cross-ref-tab::before, .ref-number-tab::before { content: "Table "; }
+.abstract, #refs {
+  &::before { display: block; margin: 1em auto; font-weight: bold; }
+}
+.abstract::before { content: "Abstract"; text-align: center; }
+#refs::before { content: "Bibliography"; font-size: 1.5em; }
+.ref-paren-open::before { content: "("; }
+.ref-paren-close::after { content: ")"; }
+.ref-semicolon::after { content: "; "; }
+.ref-and::after { content: " and "; }
+.ref-et-al::after { content: " et al."; font-style: italic; }
+.footnote-ref a {
+  &::before { content: "["; }
+  &::after { content: "]"; }
+}
+section.footnotes {
+  margin-top: 2em;
+  &::before { content: ""; display: block; max-width: 20em; }
+}
+
+@media print {
+  body { max-width: 100%; }
+  tr, img { page-break-inside: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
+}
+</style>
+</head>
+<body>
+<div class="frontmatter">
+<div class="title"><h1>Normal Right Tail Area</h1></div>
+</div>
+<div class="body">
+<p>We have \(x = 53\), \(\mu = 42\), and \(\sigma = 12\) . We want to find the chance of \(x\) being greater than \(53\) in this situation.</p>
+<p>Here is a rough picture of the area we want. Its the shaded area to the right of \(x=53\):</p>
+<p><img src="https://statplosion-api-x5isouofzq-uk.a.run.app/righttail?x=53&amp;mu=42&amp;sigma=12" alt="Right tail area for F!3Ea\(x=53\)F!3Ea, F!3Ea\(\mu=42\)F!3Ea, and F!3Ea\(\sigma=12\)F!3Ea" /></p>
+<p>Our approach will be to find the z-value from the given info, then use
+<strong>1.0-NORMSDIST</strong> to calculate the right tail area using a spreadsheet.</p>
+<p>This works because the area above is the same as the right tail area using
+the \(z\)-value we get for \(x=53\):</p>
+<p>We will use the \(z\)-value formula:</p>
+<p>$$
+z = \frac{x-\mu}{\sigma}
+$$</p>
+<p>But instead of doing this by hand we will use our spreadsheet to help us with this.</p>
+<p>We will put the numerical \(x\), \(\mu\) and \(\sigma\) values that we have in column
+B and labels for these in column A.</p>
+<ul>
+<li>Type the label <strong>x</strong> in cell <strong>A2</strong></li>
+<li>Type \(53\) in cell <strong>B2</strong></li>
+<li>Type the label <strong>mu</strong> in cell <strong>A3</strong></li>
+<li>Type \(42\) in cell <strong>B3</strong></li>
+<li>Type the label <strong>sigma</strong> in cell <strong>A4</strong></li>
+<li>Type \(12\) in cell <strong>B4</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>x</td>
+<td>53</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>mu</td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>sigma</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Use the formula \(z=\frac{x-\mu}{\sigma}\) in cell <strong>B5</strong> using the cell
+references for \(x\), \(\mu\), and \(\sigma\)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>x</td>
+<td>53</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>mu</td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>sigma</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>=(B2-B3)/B4</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>On pressing Enter, the result looks like this</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>x</td>
+<td>53</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>mu</td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>sigma</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>0.9166667</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Now use the <strong>1.0-NORMSDIST</strong> function using the \(z\) we just found</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>x</td>
+<td>53</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>mu</td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>sigma</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>0.9166667</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>right area</td>
+<td>=1.0-NORMSDIST(B5)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The result is this</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>x</td>
+<td>53</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>mu</td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>sigma</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>0.9166667</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>right area</td>
+<td>0.1796587</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To four decimal places this is \(0.1797\)</p>
+<p>Sometimes we like to have it to the nearest percent and for that we have
+\(18\%\).</p>
+</div>
+<script src="https://cdn.jsdelivr.net/combine/npm/katex@0.16.11/dist/katex.min.js,npm/katex@0.16.11/dist/contrib/auto-render.min.js,npm/@xiee/utils@1.13.33/js/render-katex.js" defer></script>
+</body>
+</html>
