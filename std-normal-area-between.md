@@ -5,34 +5,16 @@ params:
     z2: 1.1
 ---
 
-```{r}
-#| echo: false
-z1<-params$z1
-z2<-params$z2
 
-graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=",z2)
 
-area1 <- pnorm(z1)
-area2 <- pnorm(z2)
-
-rounded_area1 <- round(area1, 4)
-rounded_area2 <- round(area2, 4)
-
-area_between = area2 - area1 
-
-rounded_area_between <- round(area_between, 4)
-
-nearest_percent <- round(area_between*100)
-```
-
-We have $z_1 = `r z1`$ and $z_2 = `r z2`$. We want to find the chance of
+We have $z_1 = 0.4$ and $z_2 = 1.1$. We want to find the chance of
 getting a z-value that is between the two z-values.  
 
 Here is the picture of the area we want. 
 
-![A area between z1=`r z1` and z2=`r z2`](`r graph_url`)
+![A area between z1=0.4 and z2=1.1](https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=1.1)
 
-We want the size of the shaded region between z1=`r z1` and z2=`r z2`
+We want the size of the shaded region between z1=0.4 and z2=1.1
 
 We can calculate this area using a spreadsheet and the **NORMSDIST** function
 which gives left tail areas for the two z-values. 
@@ -43,15 +25,15 @@ But then since we want the area between the two z-values we do this:
 - We subtract the two left tail areas to get the area between them
 
 - Type **z1** in cell **A2** 
-- Put $`r z1`$ in cell **A2** 
+- Put $0.4$ in cell **A2** 
 - Type **z2** in cell **A3** 
-- Put $`r z2`$ in cell **A3** 
+- Put $1.1$ in cell **A3** 
 
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z1        |   `r z1`       |                |
-|  3  |      z2        |   `r z2`       |                |
+|  2  |      z1        |   0.4       |                |
+|  3  |      z2        |   1.1       |                |
 |  4  |                |                |                |
 |  5  |                |                |                |
 
@@ -62,8 +44,8 @@ But then since we want the area between the two z-values we do this:
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z1        |   `r z1`       |                |
-|  3  |      z2        |   `r z2`       |                |
+|  2  |      z1        |   0.4       |                |
+|  3  |      z2        |   1.1       |                |
 |  4  |     area1      | =NORMSDIST(B2) |                |
 |  5  |     area2      | =NORMSDIST(B3) |                |
 |  4  |                |                |                |
@@ -72,10 +54,10 @@ But then since we want the area between the two z-values we do this:
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z1        |   `r z1`       |                |
-|  3  |      z2        |   `r z2`       |                |
-|  4  |     area1      |   `r area1`    |                |
-|  5  |     area2      |   `r area2`    |                |
+|  2  |      z1        |   0.4       |                |
+|  3  |      z2        |   1.1       |                |
+|  4  |     area1      |   0.6554217    |                |
+|  5  |     area2      |   0.8643339    |                |
 |  6  |                |                |                |
 |  7  |                |                |                |
 
@@ -83,10 +65,10 @@ But then since we want the area between the two z-values we do this:
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z1        |   `r z1`       |                |
-|  3  |      z2        |   `r z2`       |                |
-|  4  |     area1      |   `r area1`    |                |
-|  5  |     area2      |   `r area2`    |                |
+|  2  |      z1        |   0.4       |                |
+|  3  |      z2        |   1.1       |                |
+|  4  |     area1      |   0.6554217    |                |
+|  5  |     area2      |   0.8643339    |                |
 |  6  |   area between |    =B5-B4      |                |
 |  7  |                |                |                |
 
@@ -94,15 +76,15 @@ But then since we want the area between the two z-values we do this:
 |     |    column A    |    column B    |    column C    |
 |-----|----------------|----------------|----------------|
 |  1  |                |                |                |
-|  2  |      z1        |   `r z1`       |                |
-|  3  |      z2        |   `r z2`       |                |
-|  4  |     area1      |   `r area1`    |                |
-|  5  |     area2      |   `r area2`    |                |
-|  6  |   area between |`r area_between`|                |
+|  2  |      z1        |   0.4       |                |
+|  3  |      z2        |   1.1       |                |
+|  4  |     area1      |   0.6554217    |                |
+|  5  |     area2      |   0.8643339    |                |
+|  6  |   area between |0.2089122|                |
 |  7  |                |                |                |
 
 
-To four decimal places this is $`r rounded_area_between`$
+To four decimal places this is $0.2089$
 
 Sometimes we like to have it to the nearest percent and for that we have 
-$`r nearest_percent`\%$.
+$21\%$.

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="generator" content="litedown 0.2">
-<title>Standard Normal Left Tail Area</title>
+<title>Standard Normal Area Between</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <style type="text/css">
 body {
@@ -97,19 +97,39 @@ section.footnotes {
 </head>
 <body>
 <div class="frontmatter">
-<div class="title"><h1>Standard Normal Left Tail Area</h1></div>
+<div class="title"><h1>Standard Normal Area Between</h1></div>
 </div>
 <div class="body">
-<p>We have \(z = 1.25\). We want to find the chance of getting a z-value that is
-smaller than the given one.</p>
+<p>We have \(z_1 = 0.4\) and \(z_2 = 1.1\). We want to find the chance of
+getting a z-value that is between the two z-values.</p>
 <p>Here is the picture of the area we want.</p>
-<p><img src="https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=1.25" alt="A left tail area for Pd1tV\(z=1.25\)Pd1tV" /></p>
-<p>We want the size of the shaded region to the left of \(z=1.25\).</p>
-<p>We will calculate this area using a spreadsheet and the <strong>NORMSDIST</strong> function
-which gives left tail areas for z-values.</p>
+<p><img src="https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=1.1" alt="A area between z1=0.4 and z2=1.1" /></p>
+<p>We want the size of the shaded region between z1=0.4 and z2=1.1</p>
+<p>We can calculate this area using a spreadsheet and the <strong>NORMSDIST</strong> function
+which gives left tail areas for the two z-values.</p>
+<p>But then since we want the area between the two z-values we do this:</p>
 <ul>
-<li>Type <strong>z</strong> in cell <strong>A2</strong></li>
-<li>Then type \(1.25\) into <strong>B2</strong></li>
+<li>
+<p>We calcute the left tail area for “right most” z-value, which is \(z2\)</p>
+</li>
+<li>
+<p>We calcute the left tail area for “left most” z-value, which is \(z1\)</p>
+</li>
+<li>
+<p>We subtract the two left tail areas to get the area between them</p>
+</li>
+<li>
+<p>Type <strong>z1</strong> in cell <strong>A2</strong></p>
+</li>
+<li>
+<p>Put \(0.4\) in cell <strong>A2</strong></p>
+</li>
+<li>
+<p>Type <strong>z2</strong> in cell <strong>A3</strong></p>
+</li>
+<li>
+<p>Put \(1.1\) in cell <strong>A3</strong></p>
+</li>
 </ul>
 <table>
 <thead>
@@ -129,14 +149,14 @@ which gives left tail areas for z-values.</p>
 </tr>
 <tr>
 <td>2</td>
-<td>z</td>
-<td>1.25</td>
+<td>z1</td>
+<td>0.4</td>
 <td></td>
 </tr>
 <tr>
 <td>3</td>
-<td></td>
-<td></td>
+<td>z2</td>
+<td>1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -145,10 +165,17 @@ which gives left tail areas for z-values.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <ul>
-<li>Type <strong>left area</strong> in cell <strong>A3</strong></li>
+<li>Type <strong>area1</strong> in cell <strong>A4</strong></li>
+<li>Type <strong>area2</strong> in cell <strong>A5</strong></li>
 <li>Then type <strong>=NORMSDIST(B2)</strong> into <strong>B3</strong></li>
 </ul>
 <table>
@@ -169,14 +196,26 @@ which gives left tail areas for z-values.</p>
 </tr>
 <tr>
 <td>2</td>
-<td>z</td>
-<td>1.25</td>
+<td>z1</td>
+<td>0.4</td>
 <td></td>
 </tr>
 <tr>
 <td>3</td>
-<td>left area</td>
+<td>z2</td>
+<td>1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>area1</td>
 <td>=NORMSDIST(B2)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>area2</td>
+<td>=NORMSDIST(B3)</td>
 <td></td>
 </tr>
 <tr>
@@ -185,9 +224,14 @@ which gives left tail areas for z-values.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<p>Finally hit return and you should get this:</p>
 <table>
 <thead>
 <tr>
@@ -206,27 +250,153 @@ which gives left tail areas for z-values.</p>
 </tr>
 <tr>
 <td>2</td>
-<td>z</td>
-<td>1.25</td>
+<td>z1</td>
+<td>0.4</td>
 <td></td>
 </tr>
 <tr>
 <td>3</td>
-<td>left area</td>
-<td>0.8943502263</td>
+<td>z2</td>
+<td>1.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4</td>
+<td>area1</td>
+<td>0.6554217</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>area2</td>
+<td>0.8643339</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>To four decimal places this is \(0.8944\)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>z1</td>
+<td>0.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>z2</td>
+<td>1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>area1</td>
+<td>0.6554217</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>area2</td>
+<td>0.8643339</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>area between</td>
+<td>=B5-B4</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>column A</th>
+<th>column B</th>
+<th>column C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>z1</td>
+<td>0.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>z2</td>
+<td>1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>area1</td>
+<td>0.6554217</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>area2</td>
+<td>0.8643339</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>area between</td>
+<td>0.2089122</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To four decimal places this is \(0.2089\)</p>
 <p>Sometimes we like to have it to the nearest percent and for that we have
-\(89\%\).</p>
+\(21\%\).</p>
 </div>
 <script src="https://cdn.jsdelivr.net/combine/npm/katex@0.16.11/dist/katex.min.js,npm/katex@0.16.11/dist/contrib/auto-render.min.js,npm/@xiee/utils@1.13.33/js/render-katex.js" defer></script>
 </body>
