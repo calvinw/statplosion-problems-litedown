@@ -1,0 +1,63 @@
+---
+title: Standard Normal Left Tail Area
+params:
+    z: 1.25
+---
+
+```{r}
+#| echo: false
+z<-params$z
+graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/stdlefttail?z=",z)
+area <- pnorm(z)
+rounded_area <- round(area, 4)
+nearest_percent <- round(area*100)
+str_area <- sprintf("%.10f", area)
+str_rounded_area<-sprintf("%.4f", rounded_area)
+```
+
+We have $z = `r z`$. We want to find the chance of getting a z-value that is smaller than the given one.  
+
+Here is the picture of the area we want. 
+
+![A left tail area for $z=`r z`$](`r graph_url`)
+
+We want the size of the shaded region to the left of $z=`r z`$.  
+
+We will calculate this area using a spreadsheet and the **NORMSDIST** function which gives left tail areas for z-values. 
+
+- Type **z** in cell **B2** 
+- Then type $`r z`$ into **C2**
+
+|     |    column A    |    column B    |    column C    |    column D    |
+|-----|----------------|----------------|----------------|----------------|
+|  1  |                |                |                |                |
+|  2  |                |      z         |   `r z`      |                |
+|  3  |                |                |                |                |
+|  4  |                |                |                |                |
+
+
+Calculate this by using the **NORMSDIST** formula in a spreadsheet:
+
+|     |    column A    |    column B    |    column C    |    column D    |
+|-----|----------------|----------------|----------------|----------------|
+|  1  |                |                |                |                |
+|  2  |                |      z         |   `r z`      |                |
+|  3  |                |     left area  | =NORMSDIST(C2) |                |
+|  4  |                |                |                |                |
+
+
+Use the cell reference **C2** inside the formula so it gets the right value for $z$
+
+|     |    column A    |    column B    |    column C    |    column D    |
+|-----|----------------|----------------|----------------|----------------|
+|  1  |                |                |                |                |
+|  2  |                |      z         |   `r z`      |                |
+|  3  |                |     left area  | `r str_area` |                |
+|  4  |                |                |                |                |
+
+
+To four decimal places this is $`r str_rounded_area`$
+
+Sometimes we like to have it to the nearest percent. 
+
+For that we have $`r nearest_percent`\%$.

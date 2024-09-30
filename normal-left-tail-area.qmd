@@ -1,0 +1,114 @@
+---
+title: Normal Left Tail Area
+params:
+    mu: 42
+    sigma: 12
+    x: 53
+---
+
+```{r}
+#| echo: false
+mu<-params$mu
+x<-params$x
+sigma<-params$sigma
+z<-(x-mu)/sigma
+
+rounded_z <- round(z, 2)
+area <- pnorm(z)
+rounded_area <- round(area, 4)
+nearest_percent <- round(area*100)
+str_area <- sprintf("%.10f", area)
+str_rounded_area<-sprintf("%.4f", rounded_area)
+```
+
+We have $x = `r x`$, $\mu = `r mu`$, and $\sigma = `r sigma`$ . We want to find the chance of $x$ being less than $`r x`$ in this situation.
+
+Here is a rough picture of the area we want. Its the shaded area to the left of $x=`r x`$: 
+
+```{r}
+#| echo: false
+graph_url<-paste0("https://statplosion-api-x5isouofzq-uk.a.run.app/lefttail")
+params_str<-paste0("x=",x,"&","mu=",mu,"&","sigma=",sigma)
+graph_url<-paste0(graph_url,"?", params_str)
+```
+
+![Left tail area for $x=`r x`$, $\mu=`r mu`$, and $\sigma=`r sigma`$](`r graph_url`)
+
+Our approach will be to find the z-value from the given info, then use **NORMSDIST** to calculate the left tail area using a spreadsheet.
+
+We will use the $z$-value formula to find our $z$-value:
+
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+
+Lets set up our spreadsheet to do all this.
+
+We will put the numerical $x$, $\mu$ and $\sigma$ values that we have in column B and labels for these in column A.  
+
+- Type the label x in cell **A2** 
+- Type `r x` in cell **B2** 
+- Type the label mu in cell **A3** 
+- Type `r mu` in cell **B3** 
+- Type the label sigma in cell **A4** 
+- Type `r sigma` in cell **B4** 
+
+|     |    column A    |    column B    |    column C    |
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |                |                |                |                |
+
+
+- Use the formula $z=\frac{x-\mu}{\sigma}$ in cell **B5** using the cell references for $x$, $\mu$, and $\sigma$ 
+
+|     |    column A    |    column B    |    column C    | 
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         | =(B2-B3)/B4    |                |
+|  4  |                |                |                |
+
+- The result looks like this 
+
+|     |    column A    |    column B    |    column C    | 
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         |   `r z`        |                |
+|  6  |                |                |                |                |
+
+- Now use the **NORMSDIST** function using the $z$ we just found
+
+|     |    column A    |    column B    |    column C    |    
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                | 
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         |   `r z`        |                |
+|  6  |     left area  | =NORMSDIST(B5) |                |
+|  7  |                |                |                |
+
+- The result is this 
+
+|     |    column A    |    column B    |    column C    |   
+|-----|----------------|----------------|----------------|
+|  1  |                |                |                |
+|  2  |      x         |   `r x`        |                |
+|  3  |      mu        |   `r mu`       |                |
+|  4  |      sigma     |   `r sigma`    |                |
+|  5  |      z         |   `r z`        |                |
+|  6  |     left area  |   `r area`     |                |
+|  7  |                |                |                |
+
+To four decimal places this is $`r str_rounded_area`$
+
+Sometimes we like to have it to the nearest percent and for that we have 
+$`r nearest_percent`\%$.

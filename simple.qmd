@@ -1,0 +1,28 @@
+---
+title: "Simple"
+params:
+    x: 2.454
+---
+
+# A sampler of things
+
+```{r}
+#| echo: false
+x = params$x 
+y = 4
+```
+
+This is some inline Latex $\frac{2}{3}$
+
+This is some display Latex:
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+
+We have regular text inline code: x = `r x`
+
+And we have Latex inline code: $y = `r y`$
+
+Here is an image that is delivered from statplosion api
+
+![dotplot](https://statplosion-api-x5isouofzq-uk.a.run.app/dotplot)

@@ -1,0 +1,22 @@
+---
+title: Find Z Value
+params:
+    mu: 2.303
+    sigma: 5.1 
+    x: 2.3
+---
+
+```{r}
+#| echo: false
+mu<-params$mu
+x<-params$x
+sigma<-params$sigma
+```
+
+Suppose that $x=`r x`$ for a distribution with mean $\mu=`r mu`$, standard deviation $\sigma=`r sigma`$, find the z-value for the given $x$.
+
+use the formula:
+
+$$
+z = \frac{x-\mu}{\sigma}
+$$

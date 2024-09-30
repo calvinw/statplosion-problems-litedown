@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="generator" content="litedown 0.2.3">
+<title></title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/css/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/css/article.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/css/site.min.css">
+</head>
+<body>
+<nav><p><a href="Makefile.save.html">Makefile.save</a>
+<a href="normal-left-tail-area.html">Normal Left Tail Area</a>
+<a href="simple.html">Simple</a>
+<a href="spreadsheet.html">Spreadsheet</a>
+<a href="std-normal-left-tail-area.html">Std Normal Left Tail Area</a>
+<a href="zvalue.html">Zvalue</a></p></nav>
+<div class="frontmatter">
+</div>
+<div class="body">
+<div id="TOC">
+<ul>
+<li><a href="#sec-makefile-for-compiling-quarto-documents-using-litedown-fuse">Makefile for compiling Quarto documents using litedown::fuse()</a></li>
+<li><a href="#sec-find-all-qmd-files-in-the-current-directory">Find all .qmd files in the current directory</a></li>
+<li><a href="#sec-generate-lists-of-target-html-and-markdown-files">Generate lists of target HTML and Markdown files</a></li>
+<li><a href="#sec-generate-a-list-of-potential-files-directories">Generate a list of potential *_files directories</a></li>
+<li><a href="#sec-default-target-build-all-html-files">Default target: build all HTML files</a></li>
+<li><a href="#sec-target-to-build-all-markdown-files">Target to build all Markdown files</a></li>
+<li><a href="#sec-target-to-build-all-html-files">Target to build all html files</a></li>
+<li><a href="#sec-rule-to-build-html-from-qmd">Rule to build HTML from QMD</a></li>
+<li><a href="#sec-rule-to-build-markdown-from-qmd">Rule to build Markdown from QMD</a></li>
+<li><a href="#sec-clean-up-generated-files-and-directories">Clean up generated files and directories</a></li>
+<li><a href="#sec-watch-for-changes-and-rebuild">Watch for changes and rebuild</a></li>
+<li><a href="#sec-start-r-live-server">Start R live server</a></li>
+<li><a href="#sec-phony-targets">Phony targets</a></li>
+</ul>
+</div>
+<h1 id="sec-makefile-for-compiling-quarto-documents-using-litedown-fuse">Makefile for compiling Quarto documents using litedown::fuse()</h1>
+<h1 id="sec-find-all-qmd-files-in-the-current-directory">Find all .qmd files in the current directory</h1>
+<p>QMD_FILES := $(wildcard *.qmd)</p>
+<h1 id="sec-generate-lists-of-target-html-and-markdown-files">Generate lists of target HTML and Markdown files</h1>
+<p>HTML_FILES := $(QMD_FILES:.qmd=.html)
+MD_FILES := $(QMD_FILES:.qmd=.md)</p>
+<h1 id="sec-generate-a-list-of-potential-files-directories">Generate a list of potential *_files directories</h1>
+<p>FILES_DIRS := \((addsuffix __files,\)(basename $(QMD_FILES)))</p>
+<h1 id="sec-default-target-build-all-html-files">Default target: build all HTML files</h1>
+<p>all: $(MD_FILES) $(HTML_FILES)</p>
+<h1 id="sec-target-to-build-all-markdown-files">Target to build all Markdown files</h1>
+<p>md: $(MD_FILES)</p>
+<h1 id="sec-target-to-build-all-html-files">Target to build all html files</h1>
+<p>html: $(HTML_FILES)</p>
+<h1 id="sec-rule-to-build-html-from-qmd">Rule to build HTML from QMD</h1>
+<p>%.html: %.md
+Rscript mark_md.R ‘$&lt;’ ‘$@’</p>
+<h1 id="sec-rule-to-build-markdown-from-qmd">Rule to build Markdown from QMD</h1>
+<p>%.md: %.qmd
+Rscript fuse_qmd.R ‘$&lt;’ ‘$@’</p>
+<h1 id="sec-clean-up-generated-files-and-directories">Clean up generated files and directories</h1>
+<p>clean:
+rm -f $(HTML_FILES) $(MD_FILES)
+rm -rf $(FILES_DIRS)</p>
+<h1 id="sec-watch-for-changes-and-rebuild">Watch for changes and rebuild</h1>
+<p>watch:
+@echo “Watching for changes. Press Ctrl+C to stop.”
+@while true; do <br />
+inotifywait -e modify *.qmd; <br />
+make; <br />
+done</p>
+<h1 id="sec-start-r-live-server">Start R live server</h1>
+<p>serve:
+Rscript -e “servr::httw(pattern = ‘*.html’)”</p>
+<p>watch_and_serve:
+@echo “Starting the R live server and watching for changes. Press Ctrl+C to stop.”
+@Rscript -e “servr::httw(pattern = ‘*.html’)” &amp; <br />
+while true; do <br />
+inotifywait -e modify *.qmd; <br />
+echo “Change detected, running make…”; <br />
+make; <br />
+done</p>
+<h1 id="sec-phony-targets">Phony targets</h1>
+<p>.PHONY: all md clean watch serve watch_and_serve</p>
+</div>
+<footer><p>© 2024</p></footer>
+<script src="https://cdn.jsdelivr.net/combine/npm/katex@0.16.11/dist/katex.min.js,npm/katex@0.16.11/dist/contrib/auto-render.min.js,npm/@xiee/utils@1.13.33/js/render-katex.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/js/sidenotes.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/js/appendix.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.33/js/toc-highlight.min.js" defer></script>
+</body>
+</html>

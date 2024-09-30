@@ -1,0 +1,3 @@
+output:
+    litedown::html_format:
+      keep_md: true

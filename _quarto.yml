@@ -1,0 +1,6 @@
+format:
+  html:
+    embed-resources: true
+    html-math-method: katex
+    keep-md: true
+default-image-extension: ""

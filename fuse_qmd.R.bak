@@ -1,0 +1,45 @@
+args <- commandArgs(trailingOnly = TRUE)
+library(litedown)
+library(yaml)
+
+input <- args[1]
+output <- args[2]
+
+# # Read the input file
+# input_lines <- readLines(input)
+#
+# # Read the _litedown.yml file
+# litedown_yaml <- yaml::read_yaml("_litedown.yml")
+#
+# # Extract the YAML front matter from the input file
+# yaml_start <- which(input_lines == "---")[1]
+# yaml_end <- which(input_lines == "---")[2]
+# input_yaml <- yaml::yaml.load(paste(input_lines[yaml_start:yaml_end], collapse = "\n"))
+#
+# # Merge the YAML from _litedown.yml with the input YAML
+# merged_yaml <- c(litedown_yaml, input_yaml)
+#
+# # Convert the merged YAML back to a string
+# merged_yaml_str <- yaml::as.yaml(merged_yaml)
+#
+# # Create the new input lines with the merged YAML
+# new_input_lines <- c(
+#   "---",
+#   strsplit(merged_yaml_str, "\n")[[1]],
+#   "---",
+#   input_lines[(yaml_end + 1):length(input_lines)]
+# )
+
+# Set echo to FALSE
+chunk_options <- litedown::reactor()
+chunk_options$echo <- FALSE
+options(litedown.enable.knitr_inline = TRUE)
+options(litedown.inline.signif = 12)
+
+# Set the params in the environment
+params <- merged_yaml$params
+
+#print(new_input_lines)
+
+# Call the fuse function with the new input lines
+litedown::fuse(input = input, output = output)
